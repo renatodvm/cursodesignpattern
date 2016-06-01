@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StrategyInvestimentos\Agressivo.cs" />
+    <Compile Include="StrategyInvestimentos\Conservador.cs" />
+    <Compile Include="StrategyInvestimentos\Conta.cs" />
+    <Compile Include="StrategyInvestimentos\EstrategiaInvestimento.cs" />
+    <Compile Include="StrategyInvestimentos\Moderado.cs" />
+    <Compile Include="StrategyInvestimentos\RealizadorDeInvestimentos.cs" />
     <Compile Include="Strategy\CalculadorDeImposto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
