@@ -10,9 +10,21 @@ namespace CursoAluraDesignPatterns.Strategy
     {
         public double Valor { get; private set; }
 
-        public Orcamento(double valor)
+        public IList<OrcamentoItem> Itens { get; private set; }
+
+        private Orcamento()
+        {
+            Itens = new List<OrcamentoItem>();
+        }
+
+        public Orcamento(double valor) : this()
         {
             this.Valor = valor;
         }
+    }
+
+    public class OrcamentoItem
+    {
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using CursoAluraDesignPatterns.Strategy;
+﻿using CursoAluraDesignPatterns.ChainOfResponsibility;
+using CursoAluraDesignPatterns.Strategy;
 using CursoAluraDesignPatterns.StrategyInvestimentos;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,38 @@ namespace CursoAluraDesignPatterns
         static void Main(string[] args)
         {
             //StrategyAula();
-            StrategyInvestimentos();
+            //StrategyInvestimentos();
+
+            CalculadoraDeDescontoAula();
 
             Console.ReadKey();
         }
 
-        
+        private static void CalculadoraDeDescontoAula()
+        {
+            // Teste 1: orçamento sem desconto
+            var orcamento = new Orcamento(500.0);
+            var calculadoraDeDesconto = new CalculadoraDeDesconto();
+
+            Console.WriteLine(string.Format("Orçamento de R$ 500,00, sem desconto. Valor do desconto: {0}.", calculadoraDeDesconto.Calcular(orcamento)));
+
+            // Teste 2: orçamento com desconto de mais de 5 itens
+            var orcamento2 = new Orcamento(500);
+            orcamento2.Itens.Add(new OrcamentoItem());
+            orcamento2.Itens.Add(new OrcamentoItem());
+            orcamento2.Itens.Add(new OrcamentoItem());
+            orcamento2.Itens.Add(new OrcamentoItem());
+            orcamento2.Itens.Add(new OrcamentoItem());
+            orcamento2.Itens.Add(new OrcamentoItem());
+
+            Console.WriteLine(string.Format("Orçamento de R$ 500,00, com desconto de 10% para mais de 5 itens. Valor do desconto: {0}.", calculadoraDeDesconto.Calcular(orcamento2)));
+
+            // Teste 3: orçamento com desconto de mais de R$ 500,00
+            var orcamento3 = new Orcamento(501);
+            Console.WriteLine(string.Format("Orçamento de R$ 501,00, com desconto de 7%. Valor do desconto: {0}.", calculadoraDeDesconto.Calcular(orcamento3)));
+
+        }
+
         static void StrategyAula()
         {
             Imposto iss = new Iss();
