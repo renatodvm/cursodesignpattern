@@ -1,4 +1,5 @@
 ﻿using CursoAluraDesignPatterns.ChainOfResponsibility;
+using CursoAluraDesignPatterns.ChainOfResponsibilityRequisicaoWeb;
 using CursoAluraDesignPatterns.Strategy;
 using CursoAluraDesignPatterns.StrategyInvestimentos;
 using System;
@@ -16,34 +17,57 @@ namespace CursoAluraDesignPatterns
             //StrategyAula();
             //StrategyInvestimentos();
 
-            CalculadoraDeDescontoAula();
+            //ChainOfResponsibilityAula();
+            ChainOfResponsibilityRequisicao();
 
             Console.ReadKey();
         }
 
-        private static void CalculadoraDeDescontoAula()
+        private static void ChainOfResponsibilityRequisicao()
+        {
+            var requisicao = new Requisicao(FormatoRequisicao.Xml);
+            Console.WriteLine(requisicao.Requisitar(new Conta(100, "João da Silva")));
+
+            var requisicao2 = new Requisicao(FormatoRequisicao.Csv);
+            Console.WriteLine(requisicao2.Requisitar(new Conta(1000, "José da Silva")));
+
+            var requisicao3 = new Requisicao(FormatoRequisicao.Porcento);
+            Console.WriteLine(requisicao3.Requisitar(new Conta(50000, "Maria da Silva")));
+        }
+
+        private static void ChainOfResponsibilityAula()
         {
             // Teste 1: orçamento sem desconto
             var orcamento = new Orcamento(500.0);
             var calculadoraDeDesconto = new CalculadoraDeDesconto();
 
-            Console.WriteLine(string.Format("Orçamento de R$ 500,00, sem desconto. Valor do desconto: {0}.", calculadoraDeDesconto.Calcular(orcamento)));
+            Console.WriteLine(string.Format("Orçamento 1. Desconto esperado: R$ 0,00. Desconto obtido: {0}.", calculadoraDeDesconto.Calcular(orcamento)));
 
             // Teste 2: orçamento com desconto de mais de 5 itens
             var orcamento2 = new Orcamento(500);
-            orcamento2.Itens.Add(new OrcamentoItem());
-            orcamento2.Itens.Add(new OrcamentoItem());
-            orcamento2.Itens.Add(new OrcamentoItem());
-            orcamento2.Itens.Add(new OrcamentoItem());
-            orcamento2.Itens.Add(new OrcamentoItem());
-            orcamento2.Itens.Add(new OrcamentoItem());
+            orcamento2.Itens.Add(new OrcamentoItem("Lápis"));
+            orcamento2.Itens.Add(new OrcamentoItem("Borracha"));
+            orcamento2.Itens.Add(new OrcamentoItem("Caneca"));
+            orcamento2.Itens.Add(new OrcamentoItem("Lapiseira"));
+            orcamento2.Itens.Add(new OrcamentoItem("Cola"));
+            orcamento2.Itens.Add(new OrcamentoItem("Fita adesiva"));
 
-            Console.WriteLine(string.Format("Orçamento de R$ 500,00, com desconto de 10% para mais de 5 itens. Valor do desconto: {0}.", calculadoraDeDesconto.Calcular(orcamento2)));
+            Console.WriteLine(string.Format("Orçamento 2. Desconto esperado > 5 itens: R$ 50,00. Desconto obtido: {0}.", calculadoraDeDesconto.Calcular(orcamento2)));
 
             // Teste 3: orçamento com desconto de mais de R$ 500,00
             var orcamento3 = new Orcamento(501);
-            Console.WriteLine(string.Format("Orçamento de R$ 501,00, com desconto de 7%. Valor do desconto: {0}.", calculadoraDeDesconto.Calcular(orcamento3)));
+            Console.WriteLine(string.Format("Orçamento 3. Desconto esperado 7%: R$ 35,07. Desconto obtido: {0}.", calculadoraDeDesconto.Calcular(orcamento3)));
 
+            // Teste 4: orçamento com desconto de mais de 5 itens, mais de R$ 500,00 e lápis e caneta
+            var orcamento4 = new Orcamento(501);
+            orcamento4.Itens.Add(new OrcamentoItem("Lápis"));
+            orcamento4.Itens.Add(new OrcamentoItem("Caneta"));
+            orcamento4.Itens.Add(new OrcamentoItem("Caneca"));
+            orcamento4.Itens.Add(new OrcamentoItem("Lapiseira"));
+            orcamento4.Itens.Add(new OrcamentoItem("Cola"));
+            orcamento4.Itens.Add(new OrcamentoItem("Fita adesiva"));
+
+            Console.WriteLine(string.Format("Orçamento 4. Desconto esperado 10% + 7% + 5%: R$ 110,22. Valor do desconto: {0}.", calculadoraDeDesconto.Calcular(orcamento4)));
         }
 
         static void StrategyAula()
@@ -74,7 +98,7 @@ namespace CursoAluraDesignPatterns
 
         static void StrategyInvestimentos()
         {
-            var conta = new Conta();
+            var conta = new Conta(0, "João da Silva");
             var conservador = new Conservador();
             var moderado = new Moderado();
             var agressivo = new Agressivo();

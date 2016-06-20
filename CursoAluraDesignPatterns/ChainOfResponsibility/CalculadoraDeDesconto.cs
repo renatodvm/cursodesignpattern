@@ -13,8 +13,10 @@ namespace CursoAluraDesignPatterns.ChainOfResponsibility
         {
             var desconto1 = new DescontoMaisDe5Itens();
             var desconto2 = new DescontoCompraMaior500Reais();
+            var desconto3 = new DescontoPorVendaCasada();
 
             desconto1.ProximoDesconto = desconto2;
+            desconto2.ProximoDesconto = desconto3;
 
             return desconto1.CalcularDesconto(orcamento);
         }

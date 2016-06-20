@@ -42,8 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChainOfResponsibilityRequisicaoWeb\IRequisicao.cs" />
+    <Compile Include="ChainOfResponsibilityRequisicaoWeb\Requisicao.cs" />
+    <Compile Include="ChainOfResponsibilityRequisicaoWeb\RequisicaoCsv.cs" />
+    <Compile Include="ChainOfResponsibilityRequisicaoWeb\RequisicaoPorcento.cs" />
+    <Compile Include="ChainOfResponsibilityRequisicaoWeb\RequisicaoXml.cs" />
     <Compile Include="ChainOfResponsibility\CalculadoraDeDesconto.cs" />
     <Compile Include="ChainOfResponsibility\DescontoCompraMaior500Reais.cs" />
+    <Compile Include="ChainOfResponsibility\DescontoPorVendaCasada.cs" />
     <Compile Include="ChainOfResponsibility\IDesconto.cs" />
     <Compile Include="ChainOfResponsibility\DescontoMaisDe5Itens.cs" />
     <Compile Include="StrategyInvestimentos\Agressivo.cs" />

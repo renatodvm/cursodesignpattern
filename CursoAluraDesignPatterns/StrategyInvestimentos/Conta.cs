@@ -9,5 +9,13 @@ namespace CursoAluraDesignPatterns.StrategyInvestimentos
     public class Conta
     {
         public double Saldo { get; set; }
+
+        public string Titular { get; set; }
+
+        public Conta(double saldo, string titular)
+        {
+            Saldo = saldo;
+            Titular = titular;
+        }
     }
 }

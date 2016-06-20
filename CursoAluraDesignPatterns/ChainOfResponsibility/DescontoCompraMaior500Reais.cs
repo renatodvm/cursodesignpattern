@@ -13,13 +13,15 @@ namespace CursoAluraDesignPatterns.ChainOfResponsibility
 
         public double CalcularDesconto(Orcamento orcamento)
         {
+            double desconto = 0;
+
             if (orcamento.Valor > 500)
-                return orcamento.Valor * .07;
+                desconto = orcamento.Valor * .07;
 
             if (ProximoDesconto != null)
-                return ProximoDesconto.CalcularDesconto(orcamento);
+                desconto += ProximoDesconto.CalcularDesconto(orcamento);
 
-            return 0;
+            return desconto;
         }
     }
 }
