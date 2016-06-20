@@ -9,8 +9,6 @@ namespace CursoAluraDesignPatterns.ChainOfResponsibilityRequisicaoWeb
 {
     public interface IRequisicao
     {
-        IRequisicao ProximaRequisicao { set; }
-
         string Requisitar(Conta conta, FormatoRequisicao formato);
     }
 }

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ChainOfResponsibilityRequisicaoWeb\IRequisicao.cs" />
     <Compile Include="ChainOfResponsibilityRequisicaoWeb\Requisicao.cs" />
+    <Compile Include="ChainOfResponsibilityRequisicaoWeb\RequisicaoBase.cs" />
     <Compile Include="ChainOfResponsibilityRequisicaoWeb\RequisicaoCsv.cs" />
     <Compile Include="ChainOfResponsibilityRequisicaoWeb\RequisicaoPorcento.cs" />
     <Compile Include="ChainOfResponsibilityRequisicaoWeb\RequisicaoXml.cs" />
