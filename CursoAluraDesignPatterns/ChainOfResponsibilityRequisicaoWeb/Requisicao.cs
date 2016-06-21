@@ -20,12 +20,9 @@ namespace CursoAluraDesignPatterns.ChainOfResponsibilityRequisicaoWeb
 
         public string Requisitar(Conta conta)
         {
-            var requisicaoXml = new RequisicaoXml();
-            var requisicaoCsv = new RequisicaoCsv();
-            var requisicaoPorcento = new RequisicaoPorcento();
-
-            requisicaoXml.ProximaRequisicao = requisicaoCsv;
-            requisicaoCsv.ProximaRequisicao = requisicaoPorcento;
+            var requisicaoPorcento = new RequisicaoPorcento(null);
+            var requisicaoCsv = new RequisicaoCsv(requisicaoPorcento);
+            var requisicaoXml = new RequisicaoXml(requisicaoCsv);
 
             return requisicaoXml.Requisitar(conta, Formato);
         }

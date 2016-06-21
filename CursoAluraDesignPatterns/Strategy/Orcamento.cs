@@ -26,10 +26,12 @@ namespace CursoAluraDesignPatterns.Strategy
     public class OrcamentoItem
     {
         public string Produto { get; set; }
+        public double Valor { get; set; }
 
-        public OrcamentoItem(string produto)
+        public OrcamentoItem(string produto, double valor)
         {
             Produto = produto;
+            Valor = valor;
         }
     }
 }

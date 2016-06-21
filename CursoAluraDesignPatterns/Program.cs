@@ -2,6 +2,7 @@
 using CursoAluraDesignPatterns.ChainOfResponsibilityRequisicaoWeb;
 using CursoAluraDesignPatterns.Strategy;
 using CursoAluraDesignPatterns.StrategyInvestimentos;
+using CursoAluraDesignPatterns.TemplateMethod;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,76 @@ namespace CursoAluraDesignPatterns
             //StrategyInvestimentos();
 
             //ChainOfResponsibilityAula();
-            ChainOfResponsibilityRequisicao();
+            //ChainOfResponsibilityRequisicao();
+
+            TemplateMethodAula();
 
             Console.ReadKey();
+        }
+
+        private static void TemplateMethodAula()
+        {
+            var impostoIcpp = new Icpp();
+            var impostoIkcv = new Ikcv();
+            var impostoIhit = new Ihit();
+
+            // Teste 1: ICPP mínimo
+            var orcamento = new Orcamento(499);
+            orcamento.Itens.Add(new OrcamentoItem("Lápis", 100));
+            orcamento.Itens.Add(new OrcamentoItem("Caneca", 399));
+
+            var resultado = impostoIcpp.Calcula(orcamento);
+            Console.WriteLine(string.Format("ICPP 1 valor mínimo. ICPP esperado: R$ 24,95. ICPP obtido: R$ {0}. ", resultado.ToString("###,##0.00")));
+
+
+            // Teste 2: ICPP máximo
+            var orcamento2 = new Orcamento(500);
+            orcamento2.Itens.Add(new OrcamentoItem("Lápis", 100));
+            orcamento2.Itens.Add(new OrcamentoItem("Caneca", 400));
+
+            var resultado2 = impostoIcpp.Calcula(orcamento2);
+            Console.WriteLine(string.Format("ICPP 2 valor mínimo. ICPP esperado: R$ 35,00. ICPP obtido: R$ {0}. ", resultado2.ToString("###,##0.00")));
+
+
+            // Teste 3: IKCV mínimo
+            var orcamento3 = new Orcamento(495);
+            orcamento3.Itens.Add(new OrcamentoItem("Lápis", 99));
+            orcamento3.Itens.Add(new OrcamentoItem("Caneca", 99));
+            orcamento3.Itens.Add(new OrcamentoItem("Copo", 99));
+            orcamento3.Itens.Add(new OrcamentoItem("Taça", 99));
+            orcamento3.Itens.Add(new OrcamentoItem("Colher", 99));
+
+            var resultado3 = impostoIkcv.Calcula(orcamento3);
+            Console.WriteLine(string.Format("IKCV 1 valor mínimo. IKCV esperado: R$ 29,70. IKCV obtido: R$ {0}. ", resultado3.ToString("###,##0.00")));
+
+
+            // Teste 4: IKCV máximo
+            var orcamento4 = new Orcamento(500);
+            orcamento4.Itens.Add(new OrcamentoItem("Lápis", 50));
+            orcamento4.Itens.Add(new OrcamentoItem("Caneca", 450));
+
+            var resultado4 = impostoIkcv.Calcula(orcamento4);
+            Console.WriteLine(string.Format("IKCV 2 valor máximo. IKCV esperado: R$ 50,00. IKCV obtido: R$ {0}. ", resultado4.ToString("###,##0.00")));
+
+
+            // Teste 5: IHIT mínimo
+            var orcamento5 = new Orcamento(500);
+            orcamento5.Itens.Add(new OrcamentoItem("Lápis", 50));
+            orcamento5.Itens.Add(new OrcamentoItem("Caneca", 450));
+
+            var resultado5 = impostoIhit.Calcula(orcamento5);
+            Console.WriteLine(string.Format("IHIT 1 valor mínimo. IHIT esperado: R$ 10,00. IHIT obtido: R$ {0}. ", resultado5.ToString("###,##0.00")));
+
+
+            // Teste 6: IHIT máximo
+            var orcamento6 = new Orcamento(500);
+            orcamento6.Itens.Add(new OrcamentoItem("Lápis", 50));
+            orcamento6.Itens.Add(new OrcamentoItem("Caneca", 300));
+            orcamento6.Itens.Add(new OrcamentoItem("Lápis", 50));
+            orcamento6.Itens.Add(new OrcamentoItem("Colher", 100));
+
+            var resultado6 = impostoIhit.Calcula(orcamento6);
+            Console.WriteLine(string.Format("IHIT 2 valor máximo. IHIT esperado: R$ 165,00. IHIT obtido: R$ {0}. ", resultado6.ToString("###,##0.00")));
         }
 
         private static void ChainOfResponsibilityRequisicao()
@@ -45,12 +113,12 @@ namespace CursoAluraDesignPatterns
 
             // Teste 2: orçamento com desconto de mais de 5 itens
             var orcamento2 = new Orcamento(500);
-            orcamento2.Itens.Add(new OrcamentoItem("Lápis"));
-            orcamento2.Itens.Add(new OrcamentoItem("Borracha"));
-            orcamento2.Itens.Add(new OrcamentoItem("Caneca"));
-            orcamento2.Itens.Add(new OrcamentoItem("Lapiseira"));
-            orcamento2.Itens.Add(new OrcamentoItem("Cola"));
-            orcamento2.Itens.Add(new OrcamentoItem("Fita adesiva"));
+            orcamento2.Itens.Add(new OrcamentoItem("Lápis", 10));
+            orcamento2.Itens.Add(new OrcamentoItem("Borracha", 10));
+            orcamento2.Itens.Add(new OrcamentoItem("Caneca", 10));
+            orcamento2.Itens.Add(new OrcamentoItem("Lapiseira", 10));
+            orcamento2.Itens.Add(new OrcamentoItem("Cola", 10));
+            orcamento2.Itens.Add(new OrcamentoItem("Fita adesiva", 10));
 
             Console.WriteLine(string.Format("Orçamento 2. Desconto esperado > 5 itens: R$ 50,00. Desconto obtido: {0}.", calculadoraDeDesconto.Calcular(orcamento2)));
 
@@ -60,12 +128,12 @@ namespace CursoAluraDesignPatterns
 
             // Teste 4: orçamento com desconto de mais de 5 itens, mais de R$ 500,00 e lápis e caneta
             var orcamento4 = new Orcamento(501);
-            orcamento4.Itens.Add(new OrcamentoItem("Lápis"));
-            orcamento4.Itens.Add(new OrcamentoItem("Caneta"));
-            orcamento4.Itens.Add(new OrcamentoItem("Caneca"));
-            orcamento4.Itens.Add(new OrcamentoItem("Lapiseira"));
-            orcamento4.Itens.Add(new OrcamentoItem("Cola"));
-            orcamento4.Itens.Add(new OrcamentoItem("Fita adesiva"));
+            orcamento4.Itens.Add(new OrcamentoItem("Lápis", 10));
+            orcamento4.Itens.Add(new OrcamentoItem("Caneta", 10));
+            orcamento4.Itens.Add(new OrcamentoItem("Caneca", 10));
+            orcamento4.Itens.Add(new OrcamentoItem("Lapiseira", 10));
+            orcamento4.Itens.Add(new OrcamentoItem("Cola", 10));
+            orcamento4.Itens.Add(new OrcamentoItem("Fita adesiva", 10));
 
             Console.WriteLine(string.Format("Orçamento 4. Desconto esperado 10% + 7% + 5%: R$ 110,22. Valor do desconto: {0}.", calculadoraDeDesconto.Calcular(orcamento4)));
         }

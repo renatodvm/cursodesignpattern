@@ -67,6 +67,10 @@
     <Compile Include="Strategy\Imposto.cs" />
     <Compile Include="Strategy\Iss.cs" />
     <Compile Include="Strategy\Orcamento.cs" />
+    <Compile Include="TemplateMethod\Icpp.cs" />
+    <Compile Include="TemplateMethod\Ihit.cs" />
+    <Compile Include="TemplateMethod\Ikcv.cs" />
+    <Compile Include="TemplateMethod\TemplateCalculoImposto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
