@@ -3,6 +3,7 @@ using CursoAluraDesignPatterns.ChainOfResponsibilityRequisicaoWeb;
 using CursoAluraDesignPatterns.Strategy;
 using CursoAluraDesignPatterns.StrategyInvestimentos;
 using CursoAluraDesignPatterns.TemplateMethod;
+using CursoAluraDesignPatterns.TemplateMethodRelatorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,30 @@ namespace CursoAluraDesignPatterns
             //ChainOfResponsibilityAula();
             //ChainOfResponsibilityRequisicao();
 
-            TemplateMethodAula();
+            //TemplateMethodAula();
+            TemplateMethodRelatorios();
 
+            Console.ReadKey();
+        }
+
+        private static void TemplateMethodRelatorios()
+        {
+            var banco = new Banco("Banco São Paulo", "11-2222-3333", "Rua ABC, 4589 - Vila dos Remédios", "renatodvm@gmail.com");
+            var conta1 = new Conta(1100.01, "José 1", "1", "1");
+            var conta2 = new Conta(2200.02, "José 2", "2", "2");
+            var conta3 = new Conta(3300.03, "José 3", "3", "3");
+            var conta4 = new Conta(4400.04, "José 4", "4", "4");
+            var contas = new List<Conta>();
+            contas.Add(conta1);
+            contas.Add(conta2);
+            contas.Add(conta3);
+            contas.Add(conta4);
+
+            var relatorioSimples = new RelatorioSimples();
+            var relatorioComplexo = new RelatorioComplexo();
+
+            relatorioSimples.ExibirRelatorio(contas, banco);
+            relatorioComplexo.ExibirRelatorio(contas, banco);
             Console.ReadKey();
         }
 
