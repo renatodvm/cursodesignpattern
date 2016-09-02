@@ -53,6 +53,9 @@
     <Compile Include="ChainOfResponsibility\DescontoPorVendaCasada.cs" />
     <Compile Include="ChainOfResponsibility\IDesconto.cs" />
     <Compile Include="ChainOfResponsibility\DescontoMaisDe5Itens.cs" />
+    <Compile Include="SRP\ICalculadoraDeSalario.cs" />
+    <Compile Include="SRP\SrpCoesa.cs" />
+    <Compile Include="SRP\SrpSemCoesao.cs" />
     <Compile Include="StrategyInvestimentos\Agressivo.cs" />
     <Compile Include="StrategyInvestimentos\Conservador.cs" />
     <Compile Include="StrategyInvestimentos\Conta.cs" />

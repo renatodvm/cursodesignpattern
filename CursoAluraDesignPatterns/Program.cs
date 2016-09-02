@@ -1,5 +1,6 @@
 ﻿using CursoAluraDesignPatterns.ChainOfResponsibility;
 using CursoAluraDesignPatterns.ChainOfResponsibilityRequisicaoWeb;
+using CursoAluraDesignPatterns.SRP;
 using CursoAluraDesignPatterns.Strategy;
 using CursoAluraDesignPatterns.StrategyInvestimentos;
 using CursoAluraDesignPatterns.TemplateMethod;
@@ -23,9 +24,44 @@ namespace CursoAluraDesignPatterns
             //ChainOfResponsibilityRequisicao();
 
             //TemplateMethodAula();
-            TemplateMethodRelatorios();
+            //TemplateMethodRelatorios();
+
+            SrpSemCoesao();
+            SrpComCoesao();
 
             Console.ReadKey();
+        }
+
+        private static void SrpComCoesao()
+        {
+            var tester = new Funcionario(new Tester(), 10000);
+            var dba = new Funcionario(new Dba(), 12000);
+            var dev = new Funcionario(new Desenvolvedor(), 15000);
+
+            var salarioTester = tester.CalcularSalario();
+            var salarioDba = dba.CalcularSalario();
+            var salarioDev = dev.CalcularSalario();
+
+            Console.WriteLine(string.Concat("Salário Tester: ", salarioTester));
+            Console.WriteLine(string.Concat("Salário Dba: ", salarioDba));
+            Console.WriteLine(string.Concat("Salário Developer: ", salarioDev));
+        }
+
+        private static void SrpSemCoesao()
+        {
+            var tester = new FuncionarioSemCoesao(new TesterSemCoesao(), 10000);
+            var dba = new FuncionarioSemCoesao(new DbaSemCoesao(), 12000);
+            var dev = new FuncionarioSemCoesao(new DesenvolvedorSemCoesao(), 15000);
+
+            var calcSalario = new CalculadoraDeSalarioSemCoesao();
+            var salarioTester = calcSalario.calcula(tester);
+            var salarioDba = calcSalario.calcula(dba);
+            var salarioDev = calcSalario.calcula(dev);
+
+            Console.WriteLine(string.Concat("Salário Tester: ", salarioTester));
+            Console.WriteLine(string.Concat("Salário Dba: ", salarioDba));
+            Console.WriteLine(string.Concat("Salário Developer: ", salarioDev));
+
         }
 
         private static void TemplateMethodRelatorios()
