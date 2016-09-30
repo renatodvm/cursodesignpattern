@@ -1,5 +1,6 @@
 ﻿using CursoAluraDesignPatterns.ChainOfResponsibility;
 using CursoAluraDesignPatterns.ChainOfResponsibilityRequisicaoWeb;
+using CursoAluraDesignPatterns.Decorator;
 using CursoAluraDesignPatterns.SRP;
 using CursoAluraDesignPatterns.Strategy;
 using CursoAluraDesignPatterns.StrategyInvestimentos;
@@ -26,10 +27,30 @@ namespace CursoAluraDesignPatterns
             //TemplateMethodAula();
             //TemplateMethodRelatorios();
 
-            SrpSemCoesao();
-            SrpComCoesao();
+            DecoratorAula();
+
+            //SrpSemCoesao();
+            //SrpComCoesao();
 
             Console.ReadKey();
+        }
+
+        private static void DecoratorAula()
+        {
+            var orcamento = new Orcamento(500);
+            var impostos = new Iss2(new Icms2());
+            var issIcmsImpostoMuitoAlto = new ImpostoMuitoAlto(new Iss2(new Icms2()));
+            var impostosTotais = new Icms2(new Iss2(new ImpostoMuitoAlto(new Ikcv2(new Icpp2()))));
+            var iss = new Iss2();
+            var icms = new Icms2();
+            var impostoMuitoAlto = new ImpostoMuitoAlto();
+
+            Console.WriteLine(string.Concat("ISS + ICMS = R$ ", impostos.CalculaImposto(orcamento).ToString("###,##0.00")));
+            Console.WriteLine(string.Concat("Só ISS = R$ ", iss.CalculaImposto(orcamento).ToString("###,##0.00")));
+            Console.WriteLine(string.Concat("Só ICMS = R$ ", icms.CalculaImposto(orcamento).ToString("###,##0.00")));
+            Console.WriteLine(string.Concat("Só Imposto muito alto = R$ ", impostoMuitoAlto.CalculaImposto(orcamento).ToString("###,##0.00")));
+            Console.WriteLine(string.Concat("Imposto muito alto + ISS + ICMS = R$ ", issIcmsImpostoMuitoAlto.CalculaImposto(orcamento).ToString("###,##0.00")));
+            Console.WriteLine(string.Concat("IKCP + ICPP + Imposto muito alto + ISS + ICMS = R$ ", impostosTotais.CalculaImposto(orcamento).ToString("###,##0.00")));
         }
 
         private static void SrpComCoesao()
@@ -199,9 +220,9 @@ namespace CursoAluraDesignPatterns
 
         static void StrategyAula()
         {
-            Imposto iss = new Iss();
-            Imposto icms = new Icms();
-            Imposto iccc = new Iccc();
+            IImposto iss = new Iss();
+            IImposto icms = new Icms();
+            IImposto iccc = new Iccc();
             Orcamento orcamento = new Orcamento(500.0);
             CalculadorDeImposto calculador = new CalculadorDeImposto();
 

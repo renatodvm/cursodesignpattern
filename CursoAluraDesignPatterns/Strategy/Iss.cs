@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CursoAluraDesignPatterns.Strategy
 {
-    public class Iss : Imposto
+    public class Iss : IImposto
     {
         public double Calcula(Orcamento orcamento)
         {

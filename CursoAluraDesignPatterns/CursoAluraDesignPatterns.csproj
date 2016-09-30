@@ -53,6 +53,12 @@
     <Compile Include="ChainOfResponsibility\DescontoPorVendaCasada.cs" />
     <Compile Include="ChainOfResponsibility\IDesconto.cs" />
     <Compile Include="ChainOfResponsibility\DescontoMaisDe5Itens.cs" />
+    <Compile Include="Decorator\Icms2.cs" />
+    <Compile Include="Decorator\Icpp2.cs" />
+    <Compile Include="Decorator\Ikcv2.cs" />
+    <Compile Include="Decorator\Imposto.cs" />
+    <Compile Include="Decorator\ImpostoMuitoAlto.cs" />
+    <Compile Include="Decorator\Iss2.cs" />
     <Compile Include="SRP\ICalculadoraDeSalario.cs" />
     <Compile Include="SRP\SrpCoesa.cs" />
     <Compile Include="SRP\SrpSemCoesao.cs" />
@@ -67,7 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strategy\Iccc.cs" />
     <Compile Include="Strategy\Icms.cs" />
-    <Compile Include="Strategy\Imposto.cs" />
+    <Compile Include="Strategy\IImposto.cs" />
     <Compile Include="Strategy\Iss.cs" />
     <Compile Include="Strategy\Orcamento.cs" />
     <Compile Include="TemplateMethodRelatorios\RelatorioBase.cs" />

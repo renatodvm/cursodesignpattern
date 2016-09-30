@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CursoAluraDesignPatterns.TemplateMethod
 {
-    public abstract class TemplateCalculoImposto : Imposto
+    public abstract class TemplateCalculoImposto : IImposto
     {
         public double Calcula(Orcamento orcamento)
         {
