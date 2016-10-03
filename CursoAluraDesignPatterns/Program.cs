@@ -28,11 +28,60 @@ namespace CursoAluraDesignPatterns
             //TemplateMethodRelatorios();
 
             DecoratorAula();
+            DecoratorFiltroContas();
 
             //SrpSemCoesao();
             //SrpComCoesao();
 
             Console.ReadKey();
+        }
+
+        private static void DecoratorFiltroContas()
+        {
+            var contas = new List<DecoratorFiltros.Conta>();
+
+            var filtroMenos100Reais = new DecoratorFiltros.ContaMenos100Reais();
+            var filtroMesCorrenteEFiltroMenos100Reais = new DecoratorFiltros.ContaAbertaMesCorrente(filtroMenos100Reais);
+            var todosOsFiltros = new DecoratorFiltros.ContaMais500MilReais(filtroMesCorrenteEFiltroMenos100Reais);
+
+            Console.WriteLine("Apenas 1 conta com menos de 100 reais:");
+            contas.Add(new DecoratorFiltros.Conta(90, DateTime.Now));
+            var contasFiltro = filtroMenos100Reais.Filtra(contas);
+            foreach (var contaFiltro in contasFiltro)
+            {
+                Console.WriteLine(String.Concat("Data: ", contaFiltro.DataAbertura, " - Saldo R$ ", contaFiltro.Saldo.ToString("###,##0.00")));
+            }
+            Console.WriteLine("======================");
+
+            Console.WriteLine("Apenas 2 contas com menos de 100 reais e 1 conta no mês corrente ");
+            contasFiltro.Clear();
+            contas.Clear();
+            contas.Add(new DecoratorFiltros.Conta(90, DateTime.Now.AddMonths(-1)));
+            contas.Add(new DecoratorFiltros.Conta(95, DateTime.Now.AddMonths(-1)));
+            contas.Add(new DecoratorFiltros.Conta(1200, DateTime.Now));
+            contas.Add(new DecoratorFiltros.Conta(1500, DateTime.Now.AddMonths(-1))); // Essa conta não entrará no filtro
+            contasFiltro = filtroMesCorrenteEFiltroMenos100Reais.Filtra(contas);
+            foreach (var contaFiltro in contasFiltro)
+            {
+                Console.WriteLine(String.Concat("Data: ", contaFiltro.DataAbertura, " - Saldo R$ ", contaFiltro.Saldo.ToString("###,##0.00")));
+            }
+            Console.WriteLine("======================");
+
+
+            Console.WriteLine("2 contas com menos de 100 reais, 1 conta no mês corrente e 1 conta acima de 500.000 reais");
+            contasFiltro.Clear();
+            contas.Clear();
+            contas.Add(new DecoratorFiltros.Conta(90, DateTime.Now.AddMonths(-1)));
+            contas.Add(new DecoratorFiltros.Conta(95, DateTime.Now.AddMonths(-1)));
+            contas.Add(new DecoratorFiltros.Conta(1200, DateTime.Now));
+            contas.Add(new DecoratorFiltros.Conta(1500, DateTime.Now.AddMonths(-1))); // Essa conta não entrará no filtro
+            contas.Add(new DecoratorFiltros.Conta(500001, DateTime.Now.AddDays(-35)));
+            contasFiltro = todosOsFiltros.Filtra(contas);
+            foreach (var contaFiltro in contasFiltro)
+            {
+                Console.WriteLine(String.Concat("Data: ", contaFiltro.DataAbertura, " - Saldo R$ ", contaFiltro.Saldo.ToString("###,##0.00")));
+            }
+            Console.WriteLine("======================");
         }
 
         private static void DecoratorAula()

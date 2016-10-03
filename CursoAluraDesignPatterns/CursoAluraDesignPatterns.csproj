@@ -53,6 +53,11 @@
     <Compile Include="ChainOfResponsibility\DescontoPorVendaCasada.cs" />
     <Compile Include="ChainOfResponsibility\IDesconto.cs" />
     <Compile Include="ChainOfResponsibility\DescontoMaisDe5Itens.cs" />
+    <Compile Include="DecoratorFiltros\Conta.cs" />
+    <Compile Include="DecoratorFiltros\ContaAbertaMesCorrente.cs" />
+    <Compile Include="DecoratorFiltros\ContaMais500MilReais.cs" />
+    <Compile Include="DecoratorFiltros\ContaMenos100Reais.cs" />
+    <Compile Include="DecoratorFiltros\FiltroConta.cs" />
     <Compile Include="Decorator\Icms2.cs" />
     <Compile Include="Decorator\Icpp2.cs" />
     <Compile Include="Decorator\Ikcv2.cs" />
