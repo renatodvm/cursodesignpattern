@@ -67,6 +67,11 @@
     <Compile Include="SRP\ICalculadoraDeSalario.cs" />
     <Compile Include="SRP\SrpCoesa.cs" />
     <Compile Include="SRP\SrpSemCoesao.cs" />
+    <Compile Include="State\Aprovado.cs" />
+    <Compile Include="State\EmAprovacao.cs" />
+    <Compile Include="State\EstadoOrcamento.cs" />
+    <Compile Include="State\Finalizado.cs" />
+    <Compile Include="State\Reprovado.cs" />
     <Compile Include="StrategyInvestimentos\Agressivo.cs" />
     <Compile Include="StrategyInvestimentos\Conservador.cs" />
     <Compile Include="StrategyInvestimentos\Conta.cs" />

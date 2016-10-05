@@ -27,13 +27,38 @@ namespace CursoAluraDesignPatterns
             //TemplateMethodAula();
             //TemplateMethodRelatorios();
 
-            DecoratorAula();
-            DecoratorFiltroContas();
+            //DecoratorAula();
+            //DecoratorFiltroContas();
+
+            StateAula();
 
             //SrpSemCoesao();
             //SrpComCoesao();
 
             Console.ReadKey();
+        }
+
+        private static void StateAula()
+        {
+            var orcamento = new Orcamento(500);
+            Console.WriteLine(orcamento.Valor);
+
+            orcamento.CalcularDescontoExtra();
+            Console.WriteLine(orcamento.Valor);
+
+            orcamento.Aprova();
+            orcamento.CalcularDescontoExtra();
+            Console.WriteLine(orcamento.Valor);
+
+            orcamento.Finaliza();
+            try
+            {
+                orcamento.CalcularDescontoExtra();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static void DecoratorFiltroContas()
