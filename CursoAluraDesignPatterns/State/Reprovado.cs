@@ -10,7 +10,7 @@ namespace CursoAluraDesignPatterns.State
             throw new Exception("Orçamento reprovado não pode ser aprovado.");
         }
 
-        public override void CalcularDescontoExtra(Orcamento orcamento)
+        protected override void RealizarCalculoDescontoExtra(Orcamento orcamento)
         {
             throw new Exception("Orçamento reprovado não pode ter desconto extra calculado.");
         }

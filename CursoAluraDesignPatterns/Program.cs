@@ -50,6 +50,15 @@ namespace CursoAluraDesignPatterns
             orcamento.CalcularDescontoExtra();
             Console.WriteLine(orcamento.Valor);
 
+            try
+            {
+                orcamento.CalcularDescontoExtra();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
             orcamento.Finaliza();
             try
             {

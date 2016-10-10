@@ -10,7 +10,7 @@ namespace CursoAluraDesignPatterns.State
             throw new Exception("Orçamento já está aprovado.");
         }
 
-        public override void CalcularDescontoExtra(Orcamento orcamento)
+        protected override void RealizarCalculoDescontoExtra(Orcamento orcamento)
         {
             orcamento.AtribuirValor(orcamento.Valor - (orcamento.Valor * 0.02));
         }

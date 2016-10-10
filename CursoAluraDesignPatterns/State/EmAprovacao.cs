@@ -10,7 +10,7 @@ namespace CursoAluraDesignPatterns.State
             orcamento.AlterarEstado(new Aprovado());
         }
 
-        public override void CalcularDescontoExtra(Orcamento orcamento)
+        protected override void RealizarCalculoDescontoExtra(Orcamento orcamento)
         {
             orcamento.AtribuirValor(orcamento.Valor - (orcamento.Valor * 0.05));
         }
