@@ -1,4 +1,5 @@
-﻿using CursoAluraDesignPatterns.ChainOfResponsibility;
+﻿using CursoAluraDesignPatterns.Builder;
+using CursoAluraDesignPatterns.ChainOfResponsibility;
 using CursoAluraDesignPatterns.ChainOfResponsibilityRequisicaoWeb;
 using CursoAluraDesignPatterns.Decorator;
 using CursoAluraDesignPatterns.SRP;
@@ -31,12 +32,30 @@ namespace CursoAluraDesignPatterns
             //DecoratorFiltroContas();
 
             //StateAula();
-            StateConta();
+            //StateConta();
 
             //SrpSemCoesao();
             //SrpComCoesao();
 
+            BuilderNota();
+
             Console.ReadKey();
+        }
+
+        private static void BuilderNota()
+        {
+            var builderNota = new NotaFiscalBuilder();
+
+            var nota = builderNota
+                .ComCnpj("123")
+                .ComRazaoSocial("Empresa Teste")
+                .ComObservacao("Dados da observação...")
+                .ComItem("Mouse", 10)
+                .ComItem("Teclado", 20)
+                .ComItem("Monitor", 250)
+                .Criar();
+
+            Console.WriteLine(string.Format("NF valor: {0}, {1} itens, Razão social: {2}, Data: {3}", nota.ValorBruto, nota.Itens.Count, nota.RazaoSocial, nota.DataEmissao));
         }
 
         private static void StateConta()
