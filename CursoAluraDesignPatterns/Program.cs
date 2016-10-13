@@ -30,12 +30,44 @@ namespace CursoAluraDesignPatterns
             //DecoratorAula();
             //DecoratorFiltroContas();
 
-            StateAula();
+            //StateAula();
+            StateConta();
 
             //SrpSemCoesao();
             //SrpComCoesao();
 
             Console.ReadKey();
+        }
+
+        private static void StateConta()
+        {
+            var conta = new Conta(1000, "Renato");
+            Console.WriteLine(String.Format("Saldo {0} - Estado: {1} - Tentando sacar 1100...", conta.Saldo, conta.Estado.Descricao()));
+            try
+            {
+                conta.Sacar(1100);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.WriteLine("Sacando 900...");
+            conta.Sacar(900);
+            Console.WriteLine(String.Format("Saldo {0} - Estado: {1}", conta.Saldo, conta.Estado.Descricao()));
+
+            Console.WriteLine("Nova conta...");
+            conta = new Conta(-200, "João");
+            Console.WriteLine(String.Format("Saldo {0} - Estado: {1} - Tentando sacar 50...", conta.Saldo, conta.Estado.Descricao()));
+
+            try
+            {
+                conta.Sacar(50);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static void StateAula()
