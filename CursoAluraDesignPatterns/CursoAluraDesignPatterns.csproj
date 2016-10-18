@@ -68,6 +68,10 @@
     <Compile Include="Decorator\Imposto.cs" />
     <Compile Include="Decorator\ImpostoMuitoAlto.cs" />
     <Compile Include="Decorator\Iss2.cs" />
+    <Compile Include="Observer\AcaoAposGerarNota.cs" />
+    <Compile Include="Observer\EnviadorDeEmail.cs" />
+    <Compile Include="Observer\EnviadorDeSms.cs" />
+    <Compile Include="Observer\NotaFiscalDao.cs" />
     <Compile Include="SRP\ICalculadoraDeSalario.cs" />
     <Compile Include="SRP\SrpCoesa.cs" />
     <Compile Include="SRP\SrpSemCoesao.cs" />

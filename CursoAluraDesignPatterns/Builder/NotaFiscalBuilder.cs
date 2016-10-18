@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CursoAluraDesignPatterns.Observer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace CursoAluraDesignPatterns.Builder
         public DateTime DataEmissao { get; private set; }
         public string Observacao { get; private set; }
         public IList<NotaFiscalItem> Itens { get; private set; }
+
+        private IList<AcaoAposGerarNota> _acoesAposGerarNota = new List<AcaoAposGerarNota>();
 
         public NotaFiscalBuilder()
         {
@@ -56,9 +59,22 @@ namespace CursoAluraDesignPatterns.Builder
             return this;
         }
 
+        public NotaFiscalBuilder AdicionarAcao(AcaoAposGerarNota novaAcao)
+        {
+            _acoesAposGerarNota.Add(novaAcao);
+            return this;
+        }
+
         public NotaFiscal Criar()
         {
-            return new NotaFiscal(RazaoSocial, Cnpj, ValorBruto, Impostos, DataEmissao, Observacao, Itens);
+            var nf = new NotaFiscal(RazaoSocial, Cnpj, ValorBruto, Impostos, DataEmissao, Observacao, Itens);
+
+            foreach (var acao in _acoesAposGerarNota)
+            {
+                acao.Executa(nf);
+            }
+
+            return nf;
         }
     }
 }

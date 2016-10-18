@@ -2,6 +2,7 @@
 using CursoAluraDesignPatterns.ChainOfResponsibility;
 using CursoAluraDesignPatterns.ChainOfResponsibilityRequisicaoWeb;
 using CursoAluraDesignPatterns.Decorator;
+using CursoAluraDesignPatterns.Observer;
 using CursoAluraDesignPatterns.SRP;
 using CursoAluraDesignPatterns.Strategy;
 using CursoAluraDesignPatterns.StrategyInvestimentos;
@@ -53,6 +54,9 @@ namespace CursoAluraDesignPatterns
                 .ComItem("Mouse", 10)
                 .ComItem("Teclado", 20)
                 .ComItem("Monitor", 250)
+                .AdicionarAcao(new EnviadorDeEmail())
+                .AdicionarAcao(new EnviadorDeSms())
+                .AdicionarAcao(new NotaFiscalDao())
                 .Criar();
 
             Console.WriteLine(string.Format("NF valor: {0}, {1} itens, Razão social: {2}, Data: {3}", nota.ValorBruto, nota.Itens.Count, nota.RazaoSocial, nota.DataEmissao));
