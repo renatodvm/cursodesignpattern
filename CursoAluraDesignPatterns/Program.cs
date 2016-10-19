@@ -57,9 +57,27 @@ namespace CursoAluraDesignPatterns
                 .AdicionarAcao(new EnviadorDeEmail())
                 .AdicionarAcao(new EnviadorDeSms())
                 .AdicionarAcao(new NotaFiscalDao())
+                .AdicionarAcao(new Multiplicador(1.1))
                 .Criar();
 
             Console.WriteLine(string.Format("NF valor: {0}, {1} itens, Razão social: {2}, Data: {3}", nota.ValorBruto, nota.Itens.Count, nota.RazaoSocial, nota.DataEmissao));
+
+            Console.WriteLine("--------");
+
+            var acoes = new List<AcaoAposGerarNota>();
+            acoes.Add(new EnviadorDeEmail());
+            acoes.Add(new NotaFiscalDao());
+
+            nota = new NotaFiscalBuilder(acoes)
+                .ComCnpj("456")
+                .ComRazaoSocial("Empresa Teste 2")
+                .ComObservacao("Dados da observação 2...")
+                .ComItem("Mouse", 20)
+                .ComItem("Teclado", 40)
+                .ComItem("Monitor", 500)
+                .Criar();
+
+            Console.WriteLine(string.Format("NF com ações no construtor do builder. Valor: {0}, {1} itens, Razão social: {2}, Data: {3}", nota.ValorBruto, nota.Itens.Count, nota.RazaoSocial, nota.DataEmissao));
         }
 
         private static void StateConta()

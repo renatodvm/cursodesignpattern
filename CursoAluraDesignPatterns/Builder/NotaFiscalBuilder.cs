@@ -27,6 +27,11 @@ namespace CursoAluraDesignPatterns.Builder
             _builderItem = new NotaFiscalItemBuilder();
         }
 
+        public NotaFiscalBuilder(IList<AcaoAposGerarNota> acoesAposGerarNota) : this()
+        {
+            _acoesAposGerarNota = acoesAposGerarNota;
+        }
+
         public NotaFiscalBuilder ComRazaoSocial(string razaoSocial)
         {
             this.RazaoSocial = razaoSocial;

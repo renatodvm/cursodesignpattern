@@ -71,6 +71,7 @@
     <Compile Include="Observer\AcaoAposGerarNota.cs" />
     <Compile Include="Observer\EnviadorDeEmail.cs" />
     <Compile Include="Observer\EnviadorDeSms.cs" />
+    <Compile Include="Observer\Multiplicador.cs" />
     <Compile Include="Observer\NotaFiscalDao.cs" />
     <Compile Include="SRP\ICalculadoraDeSalario.cs" />
     <Compile Include="SRP\SrpCoesa.cs" />
