@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acoplamento\EnviadorDeEmail.cs" />
+    <Compile Include="Acoplamento\Fatura.cs" />
+    <Compile Include="Acoplamento\GeradorNotaFiscal.cs" />
+    <Compile Include="Acoplamento\IAcaoAposEnviarNota.cs" />
+    <Compile Include="Acoplamento\NotaFiscal.cs" />
+    <Compile Include="Acoplamento\NotaFiscalDao.cs" />
     <Compile Include="Builder\NotaFiscal.cs" />
     <Compile Include="Builder\NotaFiscalBuilder.cs" />
     <Compile Include="Builder\NotaFiscalItem.cs" />
